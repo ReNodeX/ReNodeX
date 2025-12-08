@@ -1,142 +1,116 @@
-<svg width="640" height="220" viewBox="0 0 640 220"
+<svg width="800" height="260" viewBox="0 0 800 260"
      xmlns="http://www.w3.org/2000/svg">
 
   <style>
     :root {
-      /* Серый титан (основа) */
-      --titan-main: #b0b3c0;
-      --titan-light: #d0d3dd;
-      --titan-dark:  #70737c;
-
-      --bg: #050508;
-    }
-
-    rect.bg {
-      fill: var(--bg);
+      /* титановые серые */
+      --titan-main:  #d7d9e3;
+      --titan-dark:  #8b8f9b;
+      /* акцент для X */
+      --accent-x:    #ff3155;
     }
 
     text {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
-                   "Segoe UI", sans-serif;
-      font-weight: 800;
-      font-size: 96px;
-      letter-spacing: 4px;
-      text-transform: none;
+      font-family: "Courier New", monospace;
+      font-weight: 900;
+      font-size: 130px;
+      letter-spacing: 6px;
       text-anchor: middle;
       dominant-baseline: middle;
+      shape-rendering: crispEdges;
     }
 
-    .text-main {
+    .logo-wrapper {
+      animation: jitter 0.18s infinite alternate;
+    }
+
+    .base {
       fill: var(--titan-main);
-      filter: url(#shadow);
+      filter: url(#glow);
     }
 
-    .text-glitch-1 {
-      fill: var(--titan-light);
+    .base .x-accent {
+      fill: var(--accent-x);
+    }
+
+    .glitch-red {
+      fill: #ff3155;
       mix-blend-mode: screen;
-      animation: glitch-1 2.2s infinite linear alternate-reverse;
+      animation: glitchRed 1.4s infinite steps(2, end);
     }
 
-    .text-glitch-2 {
-      fill: var(--titan-dark);
+    .glitch-cyan {
+      fill: #00f6ff;
       mix-blend-mode: screen;
-      animation: glitch-2 2.2s infinite linear alternate-reverse;
+      animation: glitchCyan 1.4s infinite steps(2, end);
     }
 
-    .scanline {
-      fill: none;
-      stroke: rgba(255,255,255,0.06);
-      stroke-width: 1;
-    }
-
-    .noise {
-      opacity: 0.15;
-      animation: noise-move 1.8s infinite linear;
-    }
-
-    /* Основная дрожь логотипа */
-    @keyframes glitch-1 {
-      0%   { transform: translate(0,0); clip-path: inset(0 0 0 0); }
-      10%  { transform: translate(-3px,-2px); clip-path: inset(0 0 65% 0); }
-      20%  { transform: translate(2px,1px); clip-path: inset(40% 0 40% 0); }
-      30%  { transform: translate(-2px,2px); clip-path: inset(65% 0 0 0); }
-      40%  { transform: translate(1px,-1px); clip-path: inset(10% 0 70% 0); }
-      50%  { transform: translate(-1px,1px); clip-path: inset(30% 0 30% 0); }
-      60%  { transform: translate(3px,-2px); clip-path: inset(0 0 55% 0); }
-      70%  { transform: translate(-2px,0);   clip-path: inset(55% 0 10% 0); }
-      80%  { transform: translate(1px,2px);  clip-path: inset(20% 0 40% 0); }
-      90%  { transform: translate(-1px,-1px);clip-path: inset(0 0 0 0); }
-      100% { transform: translate(0,0);      clip-path: inset(0 0 0 0); }
-    }
-
-    @keyframes glitch-2 {
-      0%   { transform: translate(0,0); clip-path: inset(0 0 0 0); }
-      10%  { transform: translate(2px,1px);  clip-path: inset(60% 0 0 0); }
-      20%  { transform: translate(-2px,2px); clip-path: inset(0 0 55% 0); }
-      30%  { transform: translate(1px,-1px); clip-path: inset(35% 0 35% 0); }
-      40%  { transform: translate(-3px,1px); clip-path: inset(5% 0 70% 0); }
-      50%  { transform: translate(2px,-2px); clip-path: inset(70% 0 5% 0); }
-      60%  { transform: translate(-1px,0);   clip-path: inset(25% 0 45% 0); }
-      70%  { transform: translate(1px,2px);  clip-path: inset(0 0 65% 0); }
-      80%  { transform: translate(-2px,-1px);clip-path: inset(45% 0 25% 0); }
-      90%  { transform: translate(1px,0);    clip-path: inset(0 0 0 0); }
-      100% { transform: translate(0,0);      clip-path: inset(0 0 0 0); }
-    }
-
-    @keyframes noise-move {
+    /********* FILTERS *********/
+    <!-– лёгкое свечение как металл –->
+    </style>
+    <defs>
+      <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+        <feGaussianBlur in="SourceAlpha" stdDeviation="3" result="blur"/>
+        <feOffset in="blur" dx="0" dy="2" result="offset"/>
+        <feMerge>
+          <feMergeNode in="offset"/>
+          <feMergeNode in="SourceGraphic"/>
+        </feMerge>
+      </filter>
+    </defs>
+  <style>
+    /********* ANIMATIONS *********/
+    @keyframes jitter {
       0%   { transform: translate(0,0); }
-      50%  { transform: translate(-10px,5px); }
-      100% { transform: translate(0,0); }
+      50%  { transform: translate(0.7px,-0.7px); }
+      100% { transform: translate(-0.7px,0.7px); }
+    }
+
+    @keyframes glitchRed {
+      0%   { transform: translate(3px,0); clip-path: inset(0 0 0 0); }
+      10%  { transform: translate(5px,-2px); clip-path: inset(0 0 65% 0); }
+      20%  { transform: translate(2px,2px);  clip-path: inset(40% 0 40% 0); }
+      30%  { transform: translate(6px,-1px); clip-path: inset(70% 0 0 0); }
+      40%  { transform: translate(3px,1px);  clip-path: inset(15% 0 55% 0); }
+      50%  { transform: translate(4px,-3px); clip-path: inset(55% 0 10% 0); }
+      60%  { transform: translate(2px,0);   clip-path: inset(25% 0 35% 0); }
+      70%  { transform: translate(5px,1px);  clip-path: inset(0 0 70% 0); }
+      80%  { transform: translate(3px,-2px); clip-path: inset(45% 0 25% 0); }
+      90%  { transform: translate(5px,0);    clip-path: inset(0 0 0 0); }
+      100% { transform: translate(3px,0);    clip-path: inset(0 0 0 0); }
+    }
+
+    @keyframes glitchCyan {
+      0%   { transform: translate(-3px,0); clip-path: inset(0 0 0 0); }
+      10%  { transform: translate(-4px,1px);  clip-path: inset(60% 0 0 0); }
+      20%  { transform: translate(-2px,-2px); clip-path: inset(0 0 55% 0); }
+      30%  { transform: translate(-5px,2px);  clip-path: inset(35% 0 35% 0); }
+      40%  { transform: translate(-3px,0);    clip-path: inset(5% 0 70% 0); }
+      50%  { transform: translate(-4px,-2px); clip-path: inset(70% 0 5% 0); }
+      60%  { transform: translate(-2px,1px);  clip-path: inset(25% 0 45% 0); }
+      70%  { transform: translate(-5px,-1px); clip-path: inset(0 0 65% 0); }
+      80%  { transform: translate(-3px,2px);  clip-path: inset(45% 0 25% 0); }
+      90%  { transform: translate(-4px,0);    clip-path: inset(0 0 0 0); }
+      100% { transform: translate(-3px,0);    clip-path: inset(0 0 0 0); }
     }
   </style>
 
-  <!-- Фон -->
-  <rect class="bg" x="0" y="0" width="640" height="220" rx="0" />
+  <!-- ЛОГО С ГЛИТЧЕМ -->
+  <g class="logo-wrapper">
+    <!-- красный слой -->
+    <text x="50%" y="50%" class="glitch-red">
+      <tspan>ReNode</tspan><tspan>X</tspan>
+    </text>
 
-  <!-- Мягкая теневая подложка -->
-  <defs>
-    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
-      <feGaussianBlur in="SourceAlpha" stdDeviation="4" result="blur" />
-      <feOffset in="blur" dx="0" dy="2" result="offset" />
-      <feMerge>
-        <feMergeNode in="offset" />
-        <feMergeNode in="SourceGraphic" />
-      </feMerge>
-    </filter>
+    <!-- циановый слой -->
+    <text x="50%" y="50%" class="glitch-cyan">
+      <tspan>ReNode</tspan><tspan>X</tspan>
+    </text>
 
-    <pattern id="noisePattern" patternUnits="userSpaceOnUse" width="80" height="80">
-      <rect width="80" height="80" fill="black" />
-      <circle cx="4" cy="4" r="1" fill="white" />
-      <circle cx="30" cy="10" r="1" fill="white" />
-      <circle cx="50" cy="40" r="1" fill="white" />
-      <circle cx="70" cy="20" r="1" fill="white" />
-      <circle cx="10" cy="60" r="1" fill="white" />
-      <circle cx="40" cy="70" r="1" fill="white" />
-      <circle cx="60" cy="55" r="1" fill="white" />
-    </pattern>
-  </defs>
-
-  <!-- Лёгкий шум поверх -->
-  <rect class="noise" x="0" y="0" width="640" height="220" fill="url(#noisePattern)" />
-
-  <!-- Статические горизонтальные линии (скан-эффект) -->
-  <g opacity="0.35">
-    <line class="scanline" x1="0" x2="640" y1="50"  y2="50" />
-    <line class="scanline" x1="0" x2="640" y1="80"  y2="80" />
-    <line class="scanline" x1="0" x2="640" y1="110" y2="110" />
-    <line class="scanline" x1="0" x2="640" y1="140" y2="140" />
-    <line class="scanline" x1="0" x2="640" y1="170" y2="170" />
+    <!-- базовый титановый слой + X другим цветом -->
+    <text x="50%" y="50%" class="base">
+      <tspan>ReNode</tspan><tspan class="x-accent">X</tspan>
+    </text>
   </g>
 
-  <!-- Текст как символ -->
-  <symbol id="logoText">
-    <text x="50%" y="50%">ReNodeX</text>
-  </symbol>
-
-  <!-- Основной текст -->
-  <use href="#logoText" class="text-main" />
-
-  <!-- Глитч-слои -->
-  <use href="#logoText" class="text-glitch-1" />
-  <use href="#logoText" class="text-glitch-2" />
 </svg>
