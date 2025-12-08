@@ -1,116 +1,106 @@
-<svg width="800" height="260" viewBox="0 0 800 260"
-     xmlns="http://www.w3.org/2000/svg">
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="800" height="260" viewBox="0 0 800 260">
 
-  <style>
-    :root {
-      /* титановые серые */
-      --titan-main:  #d7d9e3;
-      --titan-dark:  #8b8f9b;
-      /* акцент для X */
-      --accent-x:    #ff3155;
-    }
+  <defs>
+    <style><![CDATA[
+      /* ===== ШРИФТ =====
+         Если нужен СТРОГО твой пиксельный шрифт:
+         1) Кладёшь файл, например fonts/pixel.woff2 в репо.
+         2) В src ниже прописываешь реальный путь.
+         Без этого блок @font-face можно удалить — просто будет моноширинный жирный текст.
+      */
+      @font-face {
+        font-family: "ReNodeXPixel";
+        src: url("fonts/pixel.woff2") format("woff2");
+      }
 
-    text {
-      font-family: "Courier New", monospace;
-      font-weight: 900;
-      font-size: 130px;
-      letter-spacing: 6px;
-      text-anchor: middle;
-      dominant-baseline: middle;
-      shape-rendering: crispEdges;
-    }
+      :root {
+        --titan-main:  #d7d9e3;  /* основной серый (текст)      */
+        --titan-x:     #f4f4f8;  /* X — светлее, как в лого      */
+        --titan-dark:  #8b8f9b;  /* запасной тёмный серый        */
+      }
 
-    .logo-wrapper {
-      animation: jitter 0.18s infinite alternate;
-    }
+      text {
+        /* сначала твой пиксельный, потом запасные */
+        font-family: "ReNodeXPixel", "Press Start 2P", "Courier New", monospace;
+        font-weight: 900;
+        font-size: 140px;
+        letter-spacing: 8px;
+        text-anchor: middle;
+        dominant-baseline: middle;
+        /* максимально “ступенчатый” рендер */
+        shape-rendering: crispEdges;
+      }
 
-    .base {
-      fill: var(--titan-main);
-      filter: url(#glow);
-    }
+      .logo-wrapper {
+        animation: jitter 0.18s infinite alternate;
+      }
 
-    .base .x-accent {
-      fill: var(--accent-x);
-    }
+      .base {
+        fill: var(--titan-main);
+      }
 
-    .glitch-red {
-      fill: #ff3155;
-      mix-blend-mode: screen;
-      animation: glitchRed 1.4s infinite steps(2, end);
-    }
+      .base .x-accent {
+        /* X НЕ красная, а светло-серая в стиле твоего лого */
+        fill: var(--titan-x);
+      }
 
-    .glitch-cyan {
-      fill: #00f6ff;
-      mix-blend-mode: screen;
-      animation: glitchCyan 1.4s infinite steps(2, end);
-    }
+      .glitch-red {
+        fill: #ff3155;
+        opacity: 0.85;
+        animation: glitchRed 1.2s infinite steps(2, end);
+      }
 
-    /********* FILTERS *********/
-    <!-– лёгкое свечение как металл –->
-    </style>
-    <defs>
-      <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-        <feGaussianBlur in="SourceAlpha" stdDeviation="3" result="blur"/>
-        <feOffset in="blur" dx="0" dy="2" result="offset"/>
-        <feMerge>
-          <feMergeNode in="offset"/>
-          <feMergeNode in="SourceGraphic"/>
-        </feMerge>
-      </filter>
-    </defs>
-  <style>
-    /********* ANIMATIONS *********/
-    @keyframes jitter {
-      0%   { transform: translate(0,0); }
-      50%  { transform: translate(0.7px,-0.7px); }
-      100% { transform: translate(-0.7px,0.7px); }
-    }
+      .glitch-cyan {
+        fill: #00f6ff;
+        opacity: 0.85;
+        animation: glitchCyan 1.2s infinite steps(2, end);
+      }
 
-    @keyframes glitchRed {
-      0%   { transform: translate(3px,0); clip-path: inset(0 0 0 0); }
-      10%  { transform: translate(5px,-2px); clip-path: inset(0 0 65% 0); }
-      20%  { transform: translate(2px,2px);  clip-path: inset(40% 0 40% 0); }
-      30%  { transform: translate(6px,-1px); clip-path: inset(70% 0 0 0); }
-      40%  { transform: translate(3px,1px);  clip-path: inset(15% 0 55% 0); }
-      50%  { transform: translate(4px,-3px); clip-path: inset(55% 0 10% 0); }
-      60%  { transform: translate(2px,0);   clip-path: inset(25% 0 35% 0); }
-      70%  { transform: translate(5px,1px);  clip-path: inset(0 0 70% 0); }
-      80%  { transform: translate(3px,-2px); clip-path: inset(45% 0 25% 0); }
-      90%  { transform: translate(5px,0);    clip-path: inset(0 0 0 0); }
-      100% { transform: translate(3px,0);    clip-path: inset(0 0 0 0); }
-    }
+      /* Лёгкая дрожь всего логотипа */
+      @keyframes jitter {
+        0%   { transform: translate(0,0); }
+        50%  { transform: translate(0.8px,-0.8px); }
+        100% { transform: translate(-0.8px,0.8px); }
+      }
 
-    @keyframes glitchCyan {
-      0%   { transform: translate(-3px,0); clip-path: inset(0 0 0 0); }
-      10%  { transform: translate(-4px,1px);  clip-path: inset(60% 0 0 0); }
-      20%  { transform: translate(-2px,-2px); clip-path: inset(0 0 55% 0); }
-      30%  { transform: translate(-5px,2px);  clip-path: inset(35% 0 35% 0); }
-      40%  { transform: translate(-3px,0);    clip-path: inset(5% 0 70% 0); }
-      50%  { transform: translate(-4px,-2px); clip-path: inset(70% 0 5% 0); }
-      60%  { transform: translate(-2px,1px);  clip-path: inset(25% 0 45% 0); }
-      70%  { transform: translate(-5px,-1px); clip-path: inset(0 0 65% 0); }
-      80%  { transform: translate(-3px,2px);  clip-path: inset(45% 0 25% 0); }
-      90%  { transform: translate(-4px,0);    clip-path: inset(0 0 0 0); }
-      100% { transform: translate(-3px,0);    clip-path: inset(0 0 0 0); }
-    }
-  </style>
+      /* Красный глич-слой */
+      @keyframes glitchRed {
+        0%   { transform: translate(3px,0); }
+        20%  { transform: translate(5px,-2px); }
+        40%  { transform: translate(2px,2px); }
+        60%  { transform: translate(6px,-1px); }
+        80%  { transform: translate(4px,1px); }
+        100% { transform: translate(3px,0); }
+      }
 
-  <!-- ЛОГО С ГЛИТЧЕМ -->
+      /* Циановый глич-слой */
+      @keyframes glitchCyan {
+        0%   { transform: translate(-3px,0); }
+        20%  { transform: translate(-4px,1px); }
+        40%  { transform: translate(-2px,-2px); }
+        60%  { transform: translate(-5px,2px); }
+        80%  { transform: translate(-3px,0); }
+        100% { transform: translate(-3px,0); }
+      }
+    ]]></style>
+  </defs>
+
+  <!-- Три слоя текста: циан-глитч, красный-глитч, базовый серый -->
   <g class="logo-wrapper">
-    <!-- красный слой -->
-    <text x="50%" y="50%" class="glitch-red">
-      <tspan>ReNode</tspan><tspan>X</tspan>
-    </text>
-
-    <!-- циановый слой -->
+    <!-- Циановый глитч -->
     <text x="50%" y="50%" class="glitch-cyan">
       <tspan>ReNode</tspan><tspan>X</tspan>
     </text>
 
-    <!-- базовый титановый слой + X другим цветом -->
+    <!-- Красный глитч -->
+    <text x="50%" y="50%" class="glitch-red">
+      <tspan>ReNode</tspan><tspan>X</tspan>
+    </text>
+
+    <!-- Основной слой, X — в стиле твоего лого (светло-серый) -->
     <text x="50%" y="50%" class="base">
       <tspan>ReNode</tspan><tspan class="x-accent">X</tspan>
     </text>
   </g>
-
 </svg>
