@@ -27,8 +27,9 @@ that make autonomous decisions with measurable impact.
 <br>
 
 <p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=ReNodeX&show_icons=true&theme=transparent&hide_border=true&icon_color=8c8c8c&title_color=ffffff&text_color=8c8c8c&bg_color=00000000" height="165"/>
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=ReNodeX&theme=transparent&hide_border=true&ring=8c8c8c&fire=ffffff&currStreakLabel=ffffff&sideLabels=8c8c8c&currStreakNum=ffffff&dates=8c8c8c&sideNums=ffffff&background=00000000" height="165"/>
+  <img src="https://img.shields.io/github/followers/ReNodeX?style=for-the-badge&color=1a1a1a&labelColor=1a1a1a&logo=github&logoColor=8c8c8c" />
+  <img src="https://img.shields.io/github/stars/ReNodeX?style=for-the-badge&color=1a1a1a&labelColor=1a1a1a&logo=github&logoColor=8c8c8c" />
+  <img src="https://komarev.com/ghpvc/?username=ReNodeX&style=for-the-badge&color=1a1a1a&label=PROFILE+VIEWS" />
 </p>
 
 <br>
