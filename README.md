@@ -1,9 +1,6 @@
 <p align="center">
   <img src="./ReNodeX_animated.gif" alt="ReNodeX" width="640">
 </p>
-<p align="center">
-  <img src="./ReNodeX_animated.gif" alt="ReNodeX" width="640">
-</p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/Node.js-1a1a1a?style=for-the-badge&logo=node.js&logoColor=8c8c8c" />
